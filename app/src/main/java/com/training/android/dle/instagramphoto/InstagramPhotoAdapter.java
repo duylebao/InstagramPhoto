@@ -34,6 +34,7 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
             viewHolder.likes = (TextView)convertView.findViewById(R.id.tvLikes);
             viewHolder.user = (TextView)convertView.findViewById(R.id.tvUser);
             viewHolder.time = (TextView)convertView.findViewById(R.id.tvDate);
+            viewHolder.profilePicture = (ImageView)convertView.findViewById(R.id.ivUser);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
@@ -46,6 +47,10 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
         viewHolder.user.setText( photo.username );
         String date = DateUtils.getRelativeTimeSpanString(photo.createdTime * 1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
         viewHolder.time.setText(date);
+        viewHolder.profilePicture.setImageResource(0);
+        if (photo.profileUrl != null){
+            Picasso.with(getContext()).load(photo.profileUrl).resize(75,75).into(viewHolder.profilePicture);
+        }
         return convertView;
     }
 
@@ -55,5 +60,6 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
         TextView likes;
         TextView user;
         TextView time;
+        ImageView profilePicture;
     }
 }

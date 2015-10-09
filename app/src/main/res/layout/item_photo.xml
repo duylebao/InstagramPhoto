@@ -10,8 +10,8 @@
         android:scaleType="fitCenter"
         android:minHeight="50dp"
         android:layout_below="@+id/tvUser"
-        android:layout_toRightOf="@+id/tvLikes"
-        android:layout_toEndOf="@+id/tvLikes" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,8 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvUser"
-        android:height="25dp"
-        android:layout_alignParentTop="true" />
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:padding="12dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,6 +51,17 @@
         android:layout_above="@+id/ivPhoto"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:height="25dp"
+        android:padding="12dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivUser"
+        android:layout_above="@+id/ivPhoto"
+        android:layout_toEndOf="@+id/tvUser"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tvUser" />
 
 </RelativeLayout>
