@@ -2,6 +2,7 @@ package com.training.android.dle.instagramphoto;
 
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +22,30 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         InstagramPhoto photo = getItem(position);
+        ViewHolder viewHolder;
+
         if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.item_photo, parent, false);
+            viewHolder.caption = (TextView)convertView.findViewById(R.id.tvCaption);
+            viewHolder.photo = (ImageView)convertView.findViewById(R.id.ivPhoto);
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder)convertView.getTag();
         }
-        TextView tvCaption = (TextView)convertView.findViewById(R.id.tvCaption);
-        ImageView ivPhoto = (ImageView)convertView.findViewById(R.id.ivPhoto);
-        tvCaption.setText( photo.caption );
+        String fullCaption = String.format("<strong>%s</strong> -- %s", photo.username, photo.caption);
+        viewHolder.caption.setText( Html.fromHtml(fullCaption) );
         // clear out photo view
-        ivPhoto.setImageResource(0);
-        Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
+        viewHolder.photo.setImageResource(0);
+        Picasso.with(getContext()).load(photo.imageUrl).placeholder(R.drawable.loading).into( viewHolder.photo );
+
+
         return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView caption;
+        ImageView photo;
     }
 }
