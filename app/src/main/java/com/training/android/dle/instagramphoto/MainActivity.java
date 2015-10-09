@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         InstagramPhoto photo = new InstagramPhoto();
                         photo.username = photoJson.getJSONObject("user").getString("username");
                         photo.caption = photoJson.getJSONObject("caption").getString("text");
+                        photo.createdTime = photoJson.getJSONObject("caption").getLong("created_time");
                         photo.imageUrl = photoJson.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
                         photo.imageHeight = photoJson.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
                         photo.likeCount = photoJson.getJSONObject("likes").getInt("count");
