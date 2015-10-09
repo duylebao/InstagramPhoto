@@ -30,6 +30,7 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
             convertView = inflater.inflate(R.layout.item_photo, parent, false);
             viewHolder.caption = (TextView)convertView.findViewById(R.id.tvCaption);
             viewHolder.photo = (ImageView)convertView.findViewById(R.id.ivPhoto);
+            viewHolder.likes = (TextView)convertView.findViewById(R.id.tvLikes);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
@@ -38,8 +39,8 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
         viewHolder.caption.setText( Html.fromHtml(fullCaption) );
         // clear out photo view
         viewHolder.photo.setImageResource(0);
-        Picasso.with(getContext()).load(photo.imageUrl).placeholder(R.drawable.loading).into( viewHolder.photo );
-
+        Picasso.with(getContext()).load(photo.imageUrl).placeholder(R.drawable.loading).into(viewHolder.photo);
+        viewHolder.likes.setText(Html.fromHtml(String.format("<strong>%d Likes</strong>", photo.likeCount)));
 
         return convertView;
     }
@@ -47,5 +48,6 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
     private static class ViewHolder {
         TextView caption;
         ImageView photo;
+        TextView likes;
     }
 }
