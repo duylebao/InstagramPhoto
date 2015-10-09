@@ -35,13 +35,21 @@
         android:layout_below="@+id/ivPhoto"
         android:height="25dp" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivUser"
+        android:layout_alignParentTop="true"
+        android:padding="10dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvUser"
         android:height="50dp"
         android:layout_alignParentTop="true"
-        android:padding="12dp" />
+        android:layout_toRightOf="@+id/ivUser"
+        android:paddingTop="12dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,13 +63,6 @@
         android:height="25dp"
         android:padding="12dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivUser"
-        android:layout_above="@+id/ivPhoto"
-        android:layout_toEndOf="@+id/tvUser"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/tvUser" />
+
 
 </RelativeLayout>
