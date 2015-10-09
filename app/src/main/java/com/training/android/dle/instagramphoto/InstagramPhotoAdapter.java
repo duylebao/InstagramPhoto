@@ -2,6 +2,7 @@ package com.training.android.dle.instagramphoto;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -11,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
@@ -49,7 +52,12 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
         viewHolder.time.setText(date);
         viewHolder.profilePicture.setImageResource(0);
         if (photo.profileUrl != null){
-            Picasso.with(getContext()).load(photo.profileUrl).resize(75,75).into(viewHolder.profilePicture);
+            Transformation transformation = new RoundedTransformationBuilder()
+                    .borderWidthDp(1)
+                    .cornerRadiusDp(1)
+                    .oval(true)
+                    .build();
+            Picasso.with(getContext()).load(photo.profileUrl).resize(75,75).transform(transformation).into(viewHolder.profilePicture);
         }
         return convertView;
     }
